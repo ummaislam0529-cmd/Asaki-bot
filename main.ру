@@ -1,16 +1,16 @@
 
-from telegram import ReplyKeyboardMarkup, KeyboardButton, Update, WebAppInfo
+from telegram import Update, KeyboardButton, ReplyKeyboardMarkup, WebAppInfo
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-TOKEN = 8841536533:ААGkvtq2cT_BXSOs-FYQ57kZNSM9o8rZHwGA
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+TOKEN = 8841536533:AAGkvtq2cT_BXSOsFYQ57kZNSM9o8rZHwGA
 
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [
             KeyboardButton(
                 text="🍣 Открыть меню",
                 web_app=WebAppInfo(
-                    url="https://sushi-asaki24.ru"
+                    url="https://google.com"
                 )
             )
         ]
@@ -22,7 +22,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
     await update.message.reply_text(
-        "🍣 Добро пожаловать в Асаки!\n\nСвежие суши и роллы с доставкой 🚀",
+        "🍣 Добро пожаловать в Асаки!",
         reply_markup=reply_markup
     )
 
