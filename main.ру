@@ -1,7 +1,18 @@
-from telegram import Update, ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
-from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
+from telegram import (
+    Update,
+    ReplyKeyboardMarkup,
+    KeyboardButton,
+    WebAppInfo
+)
+from telegram.ext import (
+    ApplicationBuilder,
+    CommandHandler,
+    MessageHandler,
+    ContextTypes,
+    filters
+)
 
-TOKEN = "8841536533:AAGkvtq2cT_BXSOsFYQ57kZNSM9o8rZHwGA”
+TOKEN = "8841536533:AAGkvtq2cT_BXSOsFYQ57kZNSM9o8rZHwGA"
 SITE_URL = "https://sushi-asaki24.ru"
 
 menu_keyboard = ReplyKeyboardMarkup(
@@ -14,18 +25,21 @@ menu_keyboard = ReplyKeyboardMarkup(
         ["🥗 Салаты", "🥤 Напитки"],
         ["🍰 Десерты", "🥫 Соусы"],
         ["🔥 Акции", "📞 Контакты"],
-        [KeyboardButton("🍣 Открыть меню", web_app=WebAppInfo(url=SITE_URL))]
+        [KeyboardButton(
+            "🍣 Открыть меню",
+            web_app=WebAppInfo(url=SITE_URL)
+        )]
     ],
     resize_keyboard=True
 )
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "🍣 Добро пожаловать в Асаки!\n\nВыберите раздел или откройте полное меню:",
+        "🍣 Добро пожаловать в АСАКИ!\n\nВыберите раздел:",
         reply_markup=menu_keyboard
     )
 
-async def handle_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
 
     if text == "🔥 Акции":
@@ -42,23 +56,23 @@ async def handle_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             "📞 АСАКИ\n\n"
             "📍 Адрес: ул. Космонавтов 17г\n"
-            "📲 Телефон: 209-27-07\n"
-            "⏰ График работы:\n"
+            "📱 Телефон: 209-27-07\n\n"
+            "🕒 График работы:\n"
             "Пн–Пт: 18:00 — 06:00\n"
-            "Сб–Вс: 18:00 — 08:00\n"
+            "Сб–Вс: 18:00 — 08:00\n\n"
             "🚗 Доставка по всему городу"
         )
 
     else:
         await update.message.reply_text(
             f"{text}\n\n"
-            "Нажмите «🍣 Открыть меню», чтобы посмотреть товары и оформить заказ."
+            "Нажмите «🍣 Открыть меню», чтобы оформить заказ."
         )
 
 app = ApplicationBuilder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
-app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_menu))
+app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
 print("Бот запущен...")
 app.run_polling()
