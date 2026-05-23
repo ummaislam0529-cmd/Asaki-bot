@@ -26,6 +26,12 @@ menu_keyboard = ReplyKeyboardMarkup(
         ["🍰 Десерты", "🥫 Соусы"],
         ["⭐ Оставить отзыв"],
         ["🔥 Акции", "📞 Контакты"],
+elif text == "⭐ Оставить отзыв":
+    await update.message.reply_text(
+        "⭐ Спасибо за отзыв!\n\n"
+        "Оставить отзыв:\n"
+        "https://yandex.ru/maps/org/asaki/148500284680/reviews/"
+    )
         [KeyboardButton(
             "🍣 Открыть меню",
             web_app=WebAppInfo(url=SITE_URL)
