@@ -14,6 +14,7 @@ menu_keyboard = ReplyKeyboardMarkup(
         ["🍣 Суши", "🍥 Гунканы"],
         ["🥗 Салаты", "🥤 Напитки"],
         ["🍰 Десерты", "🥫 Соусы"],
+        ["🔥 Акции", "📞 Контакты"],
         [KeyboardButton("🍣 Открыть меню", web_app=WebAppInfo(url=SITE_URL))]
     ],
     resize_keyboard=True
