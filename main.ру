@@ -1,33 +1,31 @@
 
-from telegram import Update, KeyboardButton, ReplyKeyboardMarkup, WebAppInfo
+from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-TOKEN = "8841536533:AAGkvtq2cT_BXSOsFYQ57kZNSM9o8rZHwGA"
+TOKEN = “8841536533:AAGkvtq2cT_BXSOsFYQ57kZNSM9o8rZHwGA”
+
+menu_keyboard = ReplyKeyboardMarkup(
+    [
+        ["🍱 Сеты", "🍣 Роллы"],
+        ["🔥 Горячие роллы", "🧀 Запеченные роллы"],
+        ["🥪 Сэндвичи", "🍙 Онигири"],
+        ["🍤 Закуски", "🍜 Wok"],
+        ["🍣 Суши", "🍥 Гунканы"],
+        ["🥗 Салаты", "🥤 Напитки"],
+        ["🍰 Десерты", "🥫 Соусы"]
+    ],
+    resize_keyboard=True
+)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    keyboard = [
-        [
-            KeyboardButton(
-                text="🍣 Открыть меню",
-                web_app=WebAppInfo(
-                    url="https://google.com"
-                )
-            )
-        ]
-    ]
-
-    reply_markup = ReplyKeyboardMarkup(
-        keyboard,
-        resize_keyboard=True
-    )
-
     await update.message.reply_text(
-        "🍣 Добро пожаловать в Асаки!",
-        reply_markup=reply_markup
+        "🍣 Добро пожаловать в Асаки!\nВыберите раздел:",
+        reply_markup=menu_keyboard
     )
 
 app = ApplicationBuilder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
 
+print("Бот запущен...")
 app.run_polling()
