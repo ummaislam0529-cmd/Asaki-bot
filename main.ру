@@ -25,9 +25,10 @@ menu_keyboard = ReplyKeyboardMarkup(
         ["🥗 Салаты", "🥤 Напитки"],
         ["🍰 Десерты", "🥫 Соусы"],
         ["⭐ Оставить отзыв"],
-        ["🔥 Акции", "📞 Контакты"],
-elif text == "⭐ Оставить отзыв":
-    await update.message.reply_text(
+        ["🔥 Акции", 
+        elif text == "📞 Контакты"],
+        elif text == "⭐ Оставить отзыв":
+        else:   await update.message.reply_text(
         "⭐ Спасибо за отзыв!\n\n"
         "Оставить отзыв:\n"
         "https://yandex.ru/maps/org/asaki/148500284680/reviews/"
