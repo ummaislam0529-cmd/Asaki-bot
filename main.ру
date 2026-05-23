@@ -24,8 +24,7 @@ menu_keyboard = ReplyKeyboardMarkup(
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "🍣 Добро пожаловать в АСАКИ!\n\n"
-        "Выберите раздел:",
+        "🍣 Добро пожаловать в АСАКИ!\n\nВыберите раздел:",
         reply_markup=menu_keyboard
     )
 
@@ -39,7 +38,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "🔥 АКЦИИ АСАКИ\n\n"
             "🎁 Самовывоз — скидка 10%\n\n"
             "🎂 На День Рождения:\n"
-            "Ролл «Калифорния лайт с крабом» в подарок\n\n"
+            "Ролл Калифорния лайт с крабом в подарок\n\n"
             "⭐ Отзыв в Яндекс:\n"
             "Онигири в подарок"
         )
@@ -48,7 +47,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await update.message.reply_text(
             "⭐ Оставить отзыв:\n\n"
-            "https://yandex.ru/maps/org/asaki/148500284680/reviews/"
+            "https://2gis.ru/"
         )
 
     elif text == "📞 Контакты":
@@ -56,13 +55,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             "📍 Красноярск\n"
             "ул. Космонавтов 17г\n\n"
-
             "📞 Телефон:\n"
-            "209-27-07\n\n"
-
-            "🕐 График:\n"
-            "18:00 — 06:00\n"
-            "Сб–Вс до 08:00"
+            "209-27-07"
         )
 
     elif text == "📲 WhatsApp":
@@ -76,14 +70,13 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await update.message.reply_text(
             "💬 MAX:\n"
-            "https://t.me/sushi_asaki_bot"
+            "Ссылка появится позже"
         )
 
     else:
 
         await update.message.reply_text(
-            f"{text}\n\n"
-            "Нажмите «🍣 Открыть меню» для заказа."
+            f"{text}\n\nНажмите «🍣 Открыть меню» для заказа."
         )
 
 app = ApplicationBuilder().token(TOKEN).build()
