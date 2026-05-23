@@ -1,19 +1,9 @@
-from telegram import (
-    Update,
-    ReplyKeyboardMarkup,
-    KeyboardButton,
-    WebAppInfo
-)
-from telegram.ext import (
-    ApplicationBuilder,
-    CommandHandler,
-    MessageHandler,
-    ContextTypes,
-    filters
-)
+from telegram import Update, ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
 
 TOKEN = "8841536533:AAGkvtq2cT_BXSOsFYQ57kZNSM9o8rZHwGA"
 SITE_URL = "https://sushi-asaki24.ru"
+YANDEX_REVIEW_URL = "https://yandex.ru/maps/org/asaki/148500284680/reviews/"
 
 menu_keyboard = ReplyKeyboardMarkup(
     [
@@ -25,18 +15,8 @@ menu_keyboard = ReplyKeyboardMarkup(
         ["🥗 Салаты", "🥤 Напитки"],
         ["🍰 Десерты", "🥫 Соусы"],
         ["⭐ Оставить отзыв"],
-        ["🔥 Акции", 
-        elif text == "📞 Контакты"],
-        elif text == "⭐ Оставить отзыв":
-        else:   await update.message.reply_text(
-        "⭐ Спасибо за отзыв!\n\n"
-        "Оставить отзыв:\n"
-        "https://yandex.ru/maps/org/asaki/148500284680/reviews/"
-    )
-        [KeyboardButton(
-            "🍣 Открыть меню",
-            web_app=WebAppInfo(url=SITE_URL)
-        )]
+        ["🔥 Акции", "📞 Контакты"],
+        [KeyboardButton("🍣 Открыть меню", web_app=WebAppInfo(url=SITE_URL))]
     ],
     resize_keyboard=True
 )
@@ -69,6 +49,13 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "Пн–Пт: 18:00 — 06:00\n"
             "Сб–Вс: 18:00 — 08:00\n\n"
             "🚗 Доставка по всему городу"
+        )
+
+    elif text == "⭐ Оставить отзыв":
+        await update.message.reply_text(
+            "⭐ Спасибо за отзыв!\n\n"
+            "Оставить отзыв в Яндекс:\n"
+            f"{YANDEX_REVIEW_URL}"
         )
 
     else:
