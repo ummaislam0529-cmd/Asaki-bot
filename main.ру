@@ -1,8 +1,7 @@
-
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
 
-TOKEN = "8841536533:AAGkvtq2cT_BXSOsFYQ57kZNSM9o8rZHwGA"
+TOKEN = "8841536533:AAGkvtq2cT_BXSOsFYQ57kZNSM9o8rZHwGA”
 SITE_URL = "https://sushi-asaki24.ru"
 
 menu_keyboard = ReplyKeyboardMarkup(
@@ -22,16 +21,39 @@ menu_keyboard = ReplyKeyboardMarkup(
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "🍣 Добро пожаловать в Асаки!\nВыберите раздел или откройте полное меню:",
+        "🍣 Добро пожаловать в Асаки!\n\nВыберите раздел или откройте полное меню:",
         reply_markup=menu_keyboard
     )
 
 async def handle_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
 
-    await update.message.reply_text(
-        f"{text}\n\nНажмите «🍣 Открыть меню», чтобы посмотреть товары и оформить заказ."
-    )
+    if text == "🔥 Акции":
+        await update.message.reply_text(
+            "🔥 АКЦИИ АСАКИ\n\n"
+            "🎁 Самовывоз — скидка 10%\n\n"
+            "🎂 На День Рождения:\n"
+            "Ролл «Калифорния лайт с крабом» в подарок\n\n"
+            "⭐ Отзыв в Яндекс:\n"
+            "Онигири в подарок"
+        )
+
+    elif text == "📞 Контакты":
+        await update.message.reply_text(
+            "📞 АСАКИ\n\n"
+            "📍 Адрес: ул. Космонавтов 17г\n"
+            "📲 Телефон: 209-27-07\n"
+            "⏰ График работы:\n"
+            "Пн–Пт: 18:00 — 06:00\n"
+            "Сб–Вс: 18:00 — 08:00\n"
+            "🚗 Доставка по всему городу"
+        )
+
+    else:
+        await update.message.reply_text(
+            f"{text}\n\n"
+            "Нажмите «🍣 Открыть меню», чтобы посмотреть товары и оформить заказ."
+        )
 
 app = ApplicationBuilder().token(TOKEN).build()
 
