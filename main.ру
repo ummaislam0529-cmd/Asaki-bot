@@ -4,9 +4,6 @@ from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, Con
 TOKEN = "8841536533:AAGkvtq2cT_BXSOsFYQ57kZNSM9o8rZHwGA"
 
 SITE_URL = "https://sushi-asaki24.ru"
-YANDEX_REVIEW_URL = "https://yandex.ru/maps/org/asaki/148500284680/reviews/"
-WHATSAPP_URL = "https://wa.me/79994462155"
-MAX_URL = "https://t.me/sushi_asaki_bot"
 
 menu_keyboard = ReplyKeyboardMarkup(
     [
@@ -28,61 +25,65 @@ menu_keyboard = ReplyKeyboardMarkup(
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "🍣 Добро пожаловать в АСАКИ!\n\n"
-        "Свежие роллы, сеты и Wok с доставкой 🚀\n\n"
         "Выберите раздел:",
         reply_markup=menu_keyboard
     )
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
     text = update.message.text
 
     if text == "🔥 Акции":
+
         await update.message.reply_text(
             "🔥 АКЦИИ АСАКИ\n\n"
             "🎁 Самовывоз — скидка 10%\n\n"
-            "🎂 День рождения:\n"
+            "🎂 На День Рождения:\n"
             "Ролл «Калифорния лайт с крабом» в подарок\n\n"
             "⭐ Отзыв в Яндекс:\n"
             "Онигири в подарок"
         )
 
     elif text == "⭐ Оставить отзыв":
+
         await update.message.reply_text(
-            "⭐ Спасибо за отзыв!\n\n"
-            "Оставить отзыв в Яндекс:\n"
-            f"{YANDEX_REVIEW_URL}"
+            "⭐ Оставить отзыв:\n\n"
+            "https://yandex.ru/maps/org/asaki/148500284680/reviews/"
         )
 
     elif text == "📞 Контакты":
+
         await update.message.reply_text(
-            "📞 АСАКИ\n\n"
-            "📍 Адрес:\n"
-            "г. Красноярск, ул. Космонавтов 17г\n\n"
-            "📱 Телефон:\n"
+            "📍 Красноярск\n"
+            "ул. Космонавтов 17г\n\n"
+
+            "📞 Телефон:\n"
             "209-27-07\n\n"
-            "🕐 График работы:\n"
-            "Пн–Пт: 18:00 — 06:00\n"
-            "Сб–Вс: 18:00 — 08:00\n\n"
-            "🚗 Доставка по городу"
+
+            "🕐 График:\n"
+            "18:00 — 06:00\n"
+            "Сб–Вс до 08:00"
         )
 
     elif text == "📲 WhatsApp":
+
         await update.message.reply_text(
-            "📲 Написать в WhatsApp:\n"
-            f"{WHATSAPP_URL}"
+            "📲 WhatsApp:\n"
+            "https://wa.me/79994462155"
         )
 
     elif text == "💬 MAX":
+
         await update.message.reply_text(
-            "💬 Мы в MAX / Telegram:\n"
-            f"{MAX_URL}"
+            "💬 MAX:\n"
+            "https://t.me/sushi_asaki_bot"
         )
 
     else:
+
         await update.message.reply_text(
             f"{text}\n\n"
-            "Чтобы посмотреть товары и оформить заказ, нажмите кнопку:\n"
-            "🍣 Открыть меню"
+            "Нажмите «🍣 Открыть меню» для заказа."
         )
 
 app = ApplicationBuilder().token(TOKEN).build()
@@ -90,5 +91,6 @@ app = ApplicationBuilder().token(TOKEN).build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
-print("Бот АСАКИ запущен...")
+print("Бот запущен...")
+
 app.run_polling()
