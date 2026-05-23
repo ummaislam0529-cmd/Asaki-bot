@@ -2,7 +2,7 @@
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-TOKEN = “8841536533:AAGkvtq2cT_BXSOsFYQ57kZNSM9o8rZHwGA”
+TOKEN = "8841536533:AAGkvtq2cT_BXSOsFYQ57kZNSM9o8rZHwGA"
 
 menu_keyboard = ReplyKeyboardMarkup(
     [
